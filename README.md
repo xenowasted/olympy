@@ -1,1 +1,154 @@
-# olympy
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Олимпиада по английскому языку</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: #6b2d5c; color: white; padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 10; }
+        nav ul { list-style: none; display: flex; gap: 2rem; justify-content: center; }
+        nav a { color: white; text-decoration: none; padding: 0.5rem 1rem; }
+        nav a:hover { background: rgba(255,255,255,0.2); border-radius: 5px; }
+        .hero { background: linear-gradient(135deg, #6b2d5c, #ff8c00); color: white; text-align: center; padding: 120px 0 80px; margin-top: 70px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .date { background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px; margin: 2rem auto; max-width: 300px; }
+        .cta { display: inline-block; background: #ff6b35; color: white; padding: 1rem 2rem; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; box-shadow: 0 5px 15px rgba(255,107,53,0.4); }
+        .cta:hover { background: #e55a2b; transform: translateY(-2px); }
+        .section { padding: 80px 0; }
+        .section h2 { text-align: center; margin-bottom: 3rem; font-size: 2.5rem; color: #6b2d5c; }
+        .team-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; list-style: none; text-align: center; }
+        .team-list li { background: #f8f9fa; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .demo-viewer { max-width: 1000px; margin: 2rem auto; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .demo-iframe { width: 100%; height: 80vh; border: none; }
+        form { max-width: 500px; margin: 2rem auto; display: flex; flex-direction: column; gap: 1rem; }
+        input, button { padding: 1rem; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; }
+        button { background: #ff8c00; color: white; border: none; cursor: pointer; font-weight: bold; transition: all 0.3s; }
+        button:hover { background: #e67e22; transform: scale(1.05); }
+        footer { background: #333; color: white; text-align: center; padding: 2rem 0; }
+        @media (max-width: 768px) { 
+            .hero h1 { font-size: 2rem; } 
+            nav ul { flex-direction: column; gap: 0; }
+            nav a { padding: 0.8rem; }
+            .demo-iframe { height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <ul>
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#info">Информация</a></li>
+                <li><a href="#team">Над проектом</a></li>
+                <li><a href="#demo">Демо</a></li>
+                <li><a href="#form">Заявка</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1>🏆 Олимпиада по английскому языку</h1>
+            <p>Проверь свои знания и победи!</p>
+            <div class="date">
+                📅 5 декабря 2025<br>
+                🕙 12:40<br>
+                📍 ЧОУ СОШ "Индра"
+            </div>
+            <a href="#form" class="cta">🎯 Зарегистрироваться</a>
+        </div>
+    </section>
+
+    <section id="info" class="section">
+        <div class="container">
+            <h2>О олимпиаде</h2>
+            <p style="font-size: 1.2rem; text-align: center; max-width: 900px; margin: 0 auto 3rem; line-height: 1.8;">
+                На основе образовательных стандартов и с учетом возрастных психологических особенностей школьников разработать современные нестандартные олимпиадные задания в письменном виде по английскому языку, включающие темы по лексикологии, грамматике, переводу, стилистике, страноведению для 8 классов, повышающие мотивацию обучающихся в изучении иностранных языков, с подробными критериями оценивания, бланками ответов, шаблоном наградных сертификатов.
+            </p>
+        </div>
+    </section>
+
+    <section id="team" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>Над проектом работали</h2>
+            <ul class="team-list">
+                <li>
+                    <h3>Бейхор Дарья Сергеевна</h3>
+                </li>
+                <li>
+                    <h3>Мельник Аделина Анатольевна</h3>
+                </li>
+                <li>
+                    <h3>Койнак Александр Юрьевич</h3>
+                </li>
+                <li>
+                    <h3>Усманова Эрика Вадимовна</h3>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="demo" class="section">
+        <div class="container">
+            <h2>Демо-версия заданий</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 2rem;">
+                Посмотрите демонстрационные задания прямо на сайте:
+            </p>
+            <div class="demo-viewer">
+                <iframe 
+                    src="https://docs.google.com/document/d/1Dw4nQ3PoHdYu601uG4z-Q9IblIGmA2iMsGQ0_YvA7Bk/edit?usp=sharing&rm=minimal" 
+                    class="demo-iframe"
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <p style="text-align: center; margin-top: 1rem; font-size: 1rem;">
+                <a href="https://docs.google.com/document/d/1Dw4nQ3PoHdYu601uG4z-Q9IblIGmA2iMsGQ0_YvA7Bk/edit?usp=sharing" target="_blank">🔗 Открыть в новой вкладке</a>
+            </p>
+        </div>
+    </section>
+
+    <section id="form" class="section" style="background: #f8f9fa;">
+        <div class="container">
+            <h2>Регистрация на олимпиаду</h2>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="ФИО участника" required>
+                <input type="text" placeholder="Класс" required>
+                <input type="email" placeholder="Email школы" required>
+                <input type="tel" placeholder="Телефон контактного лица">
+                <button type="submit">✅ Отправить заявку</button>
+            </form>
+            <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #666;">
+                Информационное письмо и положение скоро будут доступны для скачивания
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Олимпиада по английскому языку. ЧОУ СОШ "Индра". Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавный скролл
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Обработка формы
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('✅ Заявка отправлена! Скоро с вами свяжутся.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
