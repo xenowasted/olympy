@@ -1,433 +1,482 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Олимпиада по английскому языку</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: Arial, sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            background-image: url('https://priem.urfu.ru/img/login_bg.png');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            overflow-x: hidden;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
-        /* Шапка и меню - без изменений */
-        header { 
-            background: rgba(0, 51, 102, 0.92); 
-            color: #ffffff; 
-            padding: 1rem 0; 
-            position: fixed; 
-            width: 100%; 
-            top: 0; 
-            z-index: 1000; 
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        nav ul { 
-            list-style: none; 
-            display: flex; 
-            gap: 2rem; 
-            justify-content: center; 
-            flex-wrap: wrap; 
-            margin: 0;
-            padding: 0;
-        }
-        nav a { 
-            color: #ffffff; 
-            text-decoration: none; 
-            padding: 0.7rem 1.2rem; 
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            display: block;
-        }
-        nav a:hover { 
-            background: rgba(255,255,255,0.25); 
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        /* Все остальные стили без изменений */
-        .hero { 
-            background: linear-gradient(135deg, rgba(0, 51, 102, 0.88), rgba(0, 102, 153, 0.88), rgba(51, 153, 204, 0.7)); 
-            color: #ffffff; 
-            text-align: center; 
-            padding: 120px 0 80px; 
-            margin-top: 70px; 
-            backdrop-filter: blur(8px);
-            border-radius: 0 0 30px 30px;
-        }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-        .date { 
-            background: rgba(0,0,0,0.4); 
-            padding: 1.2rem; 
-            border-radius: 15px; 
-            margin: 2rem auto; 
-            max-width: 320px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .cta { 
-            display: inline-block; 
-            background: linear-gradient(45deg, #0066cc, #0099ff); 
-            color: white; 
-            padding: 1.2rem 2.5rem; 
-            text-decoration: none; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            font-size: 1.2rem; 
-            margin-top: 1.5rem; 
-            box-shadow: 0 8px 25px rgba(0,102,204,0.4);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-        .cta:hover { 
-            background: linear-gradient(45deg, #0052a3, #007acc); 
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0,102,204,0.5);
-        }
-        
-        .section { padding: 80px 0; }
-        .section h2, .demo-text { 
-            text-align: center; 
-            margin-bottom: 3rem; 
-            font-size: 2.5rem; 
-            color: #ffffff !important; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-            -webkit-text-stroke: 1px rgba(0,0,0,0.3);
-        }
-        .demo-text { font-size: 1.4rem !important; margin-bottom: 2rem; }
-        
-        .format-info {
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 1.8;
-            background: rgba(255,255,255,0.97);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-        
-        .photo-collage {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .photo-collage a { display: block; text-decoration: none; }
-        .photo-collage img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.4s ease;
-            border: 3px solid rgba(255,255,255,0.2);
-        }
-        .photo-collage img:hover {
-            transform: scale(1.05) rotate(1deg);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-        }
-        
-        .team-list { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2rem; 
-            list-style: none; 
-            text-align: center; 
-        }
-        .team-list li { 
-            background: rgba(255,255,255,0.92); 
-            padding: 2.5rem; 
-            border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.4);
-            transition: transform 0.3s ease;
-        }
-        .team-list li:hover { transform: translateY(-5px); }
-        
-        .demo-viewer { 
-            max-width: 1000px; 
-            margin: 2rem auto; 
-            border: 3px solid rgba(255,255,255,0.4);
-            border-radius: 20px; 
-            overflow: hidden; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-            background: rgba(255,255,255,0.98);
-            height: 80vh;
-        }
-        .demo-iframe { width: 100%; height: 100%; border: none; }
-        
-        /* ✅ НОВЫЕ СТИЛИ ДЛЯ ЧЕКБОКСА */
-        form { 
-            max-width: 500px; 
-            margin: 2rem auto; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 1.2rem; 
-            background: rgba(255,255,255,0.95);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
-        
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-            font-size: 0.95rem;
-            line-height: 1.4;
-            color: #555;
-            margin-top: 0.5rem;
-        }
-        
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-            accent-color: #0066cc;
-            cursor: pointer;
-        }
-        
-        .checkbox-label {
-            cursor: pointer;
-            flex: 1;
-        }
-        
-        .checkbox-label a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .checkbox-label a:hover {
-            text-decoration: underline;
-        }
-        
-        input, button { 
-            padding: 1.2rem; 
-            border: 2px solid #e1e5e9; 
-            border-radius: 12px; 
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        input:focus {
-            outline: none;
-            border-color: #0066cc;
-            box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
-        }
-        button { 
-            background: linear-gradient(45deg, #0066cc, #0099ff); 
-            color: white; 
-            border: none; 
-            cursor: pointer; 
-            font-weight: bold; 
-            font-size: 1.1rem;
-        }
-        button:hover:not(:disabled) { 
-            background: linear-gradient(45deg, #0052a3, #007acc);
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0,102,204,0.4);
-        }
-        button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-        
-        footer { 
-            background: rgba(0, 51, 102, 0.92); 
-            color: #ffffff; 
-            text-align: center; 
-            padding: 2.5rem 0; 
-            backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        /* Мобильные стили */
-        @media (max-width: 768px) {
-            .mobile-menu-btn { display: block; }
-            nav ul {
-                position: fixed;
-                top: 0; left: 0; width: 100%; height: 50vh;
-                background: rgba(0, 51, 102, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 1.5rem;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                backdrop-filter: blur(20px);
-                z-index: 999;
-            }
-            nav ul.active { transform: translateY(0); opacity: 1; visibility: visible; }
-            nav a { font-size: 1.3rem; padding: 1rem 2rem; margin: 0.5rem 0; }
-            .hero h1 { font-size: 2rem; } 
-            .demo-iframe, .demo-viewer { height: 60vh; }
-            .photo-collage { grid-template-columns: 1fr; }
-            .demo-text { font-size: 1.2rem !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Олимпиада по английскому языку</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: Arial, sans-serif;
+line-height: 1.6;
+color: #333;
+background-image: url('https://priem.urfu.ru/img/login_bg.png');
+background-size: cover;
+background-attachment: fixed;
+background-position: center;
+overflow-x: hidden;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Новая шапка с мобильным меню */
+header {
+background: rgba(0, 51, 102, 0.92);
+color: #ffffff;
+padding: 1rem 0;
+position: fixed;
+width: 100%;
+top: 0;
+z-index: 1000;
+backdrop-filter: blur(15px);
+border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Кнопка гамбургер для мобильных */
+.mobile-menu-btn {
+display: none;
+background: none;
+border: none;
+color: white;
+font-size: 1.5rem;
+cursor: pointer;
+padding: 0.5rem;
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+}
+
+nav ul {
+list-style: none;
+display: flex;
+gap: 2rem;
+justify-content: center;
+flex-wrap: wrap;
+margin: 0;
+padding: 0;
+}
+nav a {
+color: #ffffff;
+text-decoration: none;
+padding: 0.7rem 1.2rem;
+border-radius: 25px;
+transition: all 0.3s ease;
+display: block;
+}
+nav a:hover {
+background: rgba(255,255,255,0.25);
+transform: translateY(-2px);
+box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ✅ СТИЛИ ДЛЯ ЧЕКБОКСА */
+.checkbox-group {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+margin: 15px 0;
+font-size: 14px;
+color: #666;
+}
+.checkbox-group input[type="checkbox"] {
+width: 18px;
+height: 18px;
+margin: 2px 0 0 0;
+accent-color: #0066cc;
+cursor: pointer;
+}
+.checkbox-group label {
+cursor: pointer;
+line-height: 1.4;
+}
+.privacy-link {
+color: #0066cc;
+text-decoration: none;
+font-weight: 600;
+}
+.privacy-link:hover {
+text-decoration: underline;
+}
+
+/* Мобильное меню */
+@media (max-width: 768px) {
+.mobile-menu-btn {
+display: block;
+}
+
+nav ul {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 50vh;
+background: rgba(0, 51, 102, 0.98);
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 1.5rem;
+transform: translateY(-100%);
+opacity: 0;
+visibility: hidden;
+transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid rgba(255,255,255,0.2);
+margin: 0;
+padding: 2rem 0;
+z-index: 999;
+}
+
+nav ul.active {
+transform: translateY(0);
+opacity: 1;
+visibility: visible;
+}
+
+nav a {
+font-size: 1.3rem;
+padding: 1rem 2rem;
+margin: 0.5rem 0;
+}
+
+.hero h1 { font-size: 2rem; }
+.demo-iframe, .demo-viewer { height: 60vh; }
+.photo-collage { grid-template-columns: 1fr; }
+.demo-text { font-size: 1.2rem !important; }
+}
+
+/* Остальные стили без изменений */
+.hero {
+background: linear-gradient(135deg, rgba(0, 51, 102, 0.88), rgba(0, 102, 153, 0.88), rgba(51, 153, 204, 0.7));
+color: #ffffff;
+text-align: center;
+padding: 120px 0 80px;
+margin-top: 70px;
+backdrop-filter: blur(8px);
+border-radius: 0 0 30px 30px;
+}
+.hero h1 { font-size: 3rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+.date {
+background: rgba(0,0,0,0.4);
+padding: 1.2rem;
+border-radius: 15px;
+margin: 2rem auto;
+max-width: 320px;
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.2);
+}
+.cta {
+display: inline-block;
+background: linear-gradient(45deg, #0066cc, #0099ff);
+color: white;
+padding: 1.2rem 2.5rem;
+text-decoration: none;
+border-radius: 50px;
+font-weight: bold;
+font-size: 1.2rem;
+margin-top: 1.5rem;
+box-shadow: 0 8px 25px rgba(0,102,204,0.4);
+border: 2px solid rgba(255,255,255,0.3);
+}
+.cta:hover {
+background: linear-gradient(45deg, #0052a3, #007acc);
+transform: translateY(-3px);
+box-shadow: 0 12px 35px rgba(0,102,204,0.5);
+}
+
+.section { padding: 80px 0; }
+.section h2, .demo-text {
+text-align: center;
+margin-bottom: 3rem;
+font-size: 2.5rem;
+color: #ffffff !important;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+-webkit-text-stroke: 1px rgba(0,0,0,0.3);
+}
+.demo-text { font-size: 1.4rem !important; margin-bottom: 2rem; }
+
+.format-info {
+max-width: 900px;
+margin: 0 auto 3rem;
+text-align: center;
+font-size: 1.2rem;
+line-height: 1.8;
+background: rgba(255,255,255,0.97);
+padding: 2.5rem;
+border-radius: 20px;
+box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+border: 1px solid rgba(255,255,255,0.3);
+}
+.photo-collage {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+.photo-collage a { display: block; text-decoration: none; }
+.photo-collage img {
+width: 100%;
+height: 250px;
+object-fit: cover;
+border-radius: 15px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+transition: all 0.4s ease;
+border: 3px solid rgba(255,255,255,0.2);
+}
+.photo-collage img:hover {
+transform: scale(1.05) rotate(1deg);
+box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.team-list {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+gap: 2rem;
+list-style: none;
+text-align: center;
+}
+.team-list li {
+background: rgba(255,255,255,0.92);
+padding: 2.5rem;
+border-radius: 20px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+border: 1px solid rgba(255,255,255,0.4);
+transition: transform 0.3s ease;
+}
+.team-list li:hover { transform: translateY(-5px); }
+
+.demo-viewer {
+max-width: 1000px;
+margin: 2rem auto;
+border: 3px solid rgba(255,255,255,0.4);
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+background: rgba(255,255,255,0.98);
+height: 80vh;
+}
+.demo-iframe { width: 100%; height: 100%; border: none; }
+
+form {
+max-width: 500px;
+margin: 2rem auto;
+display: flex;
+flex-direction: column;
+gap: 1.2rem;
+background: rgba(255,255,255,0.95);
+padding: 2rem;
+border-radius: 20px;
+box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+input, button {
+padding: 1.2rem;
+border: 2px solid #e1e5e9;
+border-radius: 12px;
+font-size: 1rem;
+transition: all 0.3s ease;
+}
+input:focus {
+outline: none;
+border-color: #0066cc;
+box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+}
+button {
+background: linear-gradient(45deg, #0066cc, #0099ff);
+color: white;
+border: none;
+cursor: pointer;
+font-weight: bold;
+font-size: 1.1rem;
+}
+button:hover {
+background: linear-gradient(45deg, #0052a3, #007acc);
+transform: scale(1.02);
+box-shadow: 0 8px 25px rgba(0,102,204,0.4);
+}
+
+footer {
+background: rgba(0, 51, 102, 0.92);
+color: #ffffff;
+text-align: center;
+padding: 2.5rem 0;
+backdrop-filter: blur(15px);
+border-top: 1px solid rgba(255,255,255,0.1);
+}
+</style>
 </head>
 <body>
-    <header>
-        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
-        <nav class="container" id="main-nav">
-            <ul id="nav-menu">
-                <li><a href="#hero">Главная</a></li>
-                <li><a href="#format">Формат проведения</a></li>
-                <li><a href="#process">Проведение олимпиады</a></li>
-                <li><a href="#info">Информация</a></li>
-                <li><a href="#team">Авторы</a></li>
-                <li><a href="#demo">Демо</a></li>
-                <li><a href="#form">Заявка</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+<nav class="container" id="main-nav">
+<ul id="nav-menu">
+<li><a href="#hero">Главная</a></li>
+<li><a href="#format">Формат проведения</a></li>
+<li><a href="#process">Проведение олимпиады</a></li>
+<li><a href="#info">Информация</a></li>
+<li><a href="#team">Авторы</a></li>
+<li><a href="#demo">Демо</a></li>
+<li><a href="#form">Заявка</a></li>
+</ul>
+</nav>
+</header>
 
-    <!-- Все секции без изменений -->
-    <section id="hero" class="hero">
-        <div class="container">
-            <h1>Engolympia для учащихся 8 классов</h1>
-            <p>Проверь свои знания по лексикологии, грамматике, переводу</p>
-            <div class="date">
-                📅 5 декабря 2025<br>
-                🕙 12:40<br>
-                📍 ЧОУ СОШ "Индра", г. Екатеринбург, Новгородцевой 11А
-            </div>
-            <a href="#form" class="cta">🎯 Зарегистрироваться</a>
-        </div>
-    </section>
+<section id="hero" class="hero">
+<div class="container">
+<h1>Engolympia для учащихся 8 классов</h1>
+<p>Проверь свои знания по лексикологии, грамматике, переводу</p>
+<div class="date">
+📅 5 декабря 2025<br>
+🕙 12:40<br>
+📍 ЧОУ СОШ "Индра", г. Екатеринбург, Новгородцевой 11А
+</div>
+<a href="#form" class="cta">🎯 Зарегистрироваться</a>
+</div>
+</section>
 
-    <section id="format" class="section">
-        <div class="container">
-            <h2>Формат проведения</h2>
-            <div class="format-info">
-                <p>Олимпиада проводится <strong>очно</strong> на территории ЧОУ СОШ Индра по адресу: г. Екатеринбург, ул. Новгородцевой 11А.</p>
-                <p>Олимпиада проводится <strong>бесплатно</strong>. Для участия необходимо заполнить анкету участника.</p>
-                <p><strong>Регистрация открыта с 15 по 28 ноября 2025</strong></p>
-                <p><strong>Сроки и время проведения:</strong><br>
-                5 декабря 2025<br>
-                с 12:45 по 14:20</p>
-                <p><strong>Результаты олимпиады будут размещены на сайте,</strong><br>
-                победители награждаются дипломами, остальные участники – сертификатами.</p>
-            </div>
-        </div>
-    </section>
+<section id="format" class="section">
+<div class="container">
+<h2>Формат проведения</h2>
+<div class="format-info">
+<p>Олимпиада проводится <strong>очно</strong> на территории ЧОУ СОШ Индра по адресу: г. Екатеринбург, ул. Новгородцевой 11А.</p>
+<p>Олимпиада проводится <strong>бесплатно</strong>. Для участия необходимо заполнить анкету участника.</p>
+<p><strong>Регистрация открыта с 15 по 28 ноября 2025</strong></p>
+<p><strong>Сроки и время проведения:</strong><br>
+5 декабря 2025<br>
+с 12:45 по 14:20</p>
+<p><strong>Результаты олимпиады будут размещены на сайте,</strong><br>
+победители награждаются дипломами, остальные участники – сертификатами.</p>
+</div>
+</div>
+</section>
 
-    <!-- Остальные секции без изменений -->
-    
-    <section id="form" class="section">
-        <div class="container">
-            <h2>Регистрация на олимпиаду</h2>
-            <form id="registrationForm" onsubmit="handleSubmit(event)">
-                <input type="text" placeholder="ФИО участника" required>
-                <input type="text" placeholder="Класс" required>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Номер телефона" required>
-                
-                <!-- ✅ НОВЫЙ ЧЕКБОКС СОГЛАСИЯ -->
-                <div class="checkbox-container">
-                    <input type="checkbox" id="privacyConsent" required>
-                    <label for="privacyConsent" class="checkbox-label">
-                        Согласен(а) на <a href="#" onclick="openPrivacyPolicy()">обработку персональных данных</a>
-                    </label>
-                </div>
-                
-                <button type="submit" id="submitBtn">✅ Отправить заявку</button>
-            </form>
-        </div>
-    </section>
+<section id="process" class="section">
+<div class="container">
+<h2>Проведение олимпиады</h2>
+<div class="photo-collage">
+<a href="https://iimg.su/i/ezQoZZ" target="_blank">
+<img src="https://iimg.su/s/14/gezQoZZx8MzHZf9uoqfNOXVDqV2QMzRRZLMobmmv.jpg" alt="Фото олимпиады 1">
+</a>
+<a href="https://iimg.su/i/tUnNPP" target="_blank">
+<img src="https://iimg.su/s/14/gtUnNPPxpdObju8L7fC9XBFCcg249zXHDpgej3cv.jpg" alt="Фото олимпиады 2">
+</a>
+<a href="https://iimg.su/i/psC2nz" target="_blank">
+<img src="https://iimg.su/s/14/gpsC2nzxfpHKvZVgpRqTmivVTrzFjccy6Nrypm8p.jpg" alt="Фото олимпиады 3">
+</a>
+</div>
+</div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 УРФУ, проект Engolympia</p>
-        </div>
-    </footer>
+<section id="info" class="section">
+<div class="container">
+<h2>Об олимпиаде</h2>
+<p style="font-size: 1.2rem; text-align: center; max-width: 900px; margin: 0 auto 3rem; line-height: 1.8; background: rgba(255,255,255,0.95); padding: 2.5rem; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+На основе образовательных стандартов и с учетом возрастных психологических особенностей школьников разработать современные нестандартные олимпиадные задания в письменном виде по английскому языку, включающие темы по лексикологии, грамматике, переводу, стилистике, страноведению для 8 классов, повышающие мотивацию обучающихся в изучении иностранных языков, с подробными критериями оценивания, бланками ответов, шаблоном наградных сертификатов.
+</p>
+</div>
+</section>
 
-    <script>
-        // Мобильное меню (без изменений)
-        function toggleMobileMenu() {
-            const menu = document.getElementById('nav-menu');
-            menu.classList.toggle('active');
-        }
+<section id="team" class="section" style="background: rgba(248,249,250,0.95);">
+<div class="container">
+<h2>Над проектом работали</h2>
+<ul class="team-list">
+<li><h3>Бейхор Дарья Сергеевна</h3></li>
+<li><h3>Мельник Аделина Анатольевна</h3></li>
+<li><h3>Койнак Александр Юрьевич</h3></li>
+<li><h3>Усманова Эрика Вадимовна</h3></li>
+</ul>
+</div>
+</section>
 
-        document.querySelectorAll('#nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('nav-menu').classList.remove('active');
-            });
-        });
+<section id="demo" class="section">
+<div class="container">
+<h2>Демо-версия заданий</h2>
+<p class="demo-text">
+Посмотрите демонстрационные задания <strong>прямо на сайте</strong>:
+</p>
+<div class="demo-viewer">
+<iframe
+src="https://docs.google.com/document/d/e/2PACX-1vQdTl0h0sqQ1oCUb_CkBHvV34WHU2NgvNe6ocMgB4ja5xhjt1UAnmuHQDzytL9RZJyavdJX7YvYPBAH/pub"
+class="demo-iframe"
+allowfullscreen>
+</iframe>
+</div>
+<p style="text-align: center; margin-top: 1rem; font-size: 1rem;">
+<a href="https://docs.google.com/document/d/e/2PACX-1vQdTl0h0sqQ1oCUb_CkBHvV34WHU2NgvNe6ocMgB4ja5xhjt1UAnmuHQDzytL9RZJyavdJX7YvYPBAH/pub" target="_blank">🔗 Открыть в новой вкладке</a>
+</p>
+</div>
+</section>
 
-        document.addEventListener('click', (e) => {
-            const menu = document.getElementById('nav-menu');
-            const btn = document.querySelector('.mobile-menu-btn');
-            if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                menu.classList.remove('active');
-            }
-        });
+<section id="form" class="section">
+<div class="container">
+<h2>Регистрация на олимпиаду</h2>
+<form onsubmit="handleSubmit(event)">
+<input type="text" placeholder="ФИО участника" required>
+<input type="text" placeholder="Класс" required>
+<input type="email" placeholder="Email" required>
+<input type="tel" placeholder="Номер телефона" required>
+<!-- ✅ ЧЕКБОКС С ГИПЕРССЫЛКОЙ -->
+<div class="checkbox-group">
+<input type="checkbox" id="privacy" required>
+<label for="privacy">Согласен(а) на <a href="#" class="privacy-link" onclick="showPrivacyInfo(); return false;">обработку персональных данных</a></label>
+</div>
+<button type="submit">✅ Отправить заявку</button>
+</form>
+</div>
+</section>
 
-        // ✅ НОВАЯ ФУНКЦИЯ ДЛЯ ЧЕКБОКСА
-        const privacyCheckbox = document.getElementById('privacyConsent');
-        const submitBtn = document.getElementById('submitBtn');
-        
-        privacyCheckbox.addEventListener('change', function() {
-            submitBtn.disabled = !this.checked;
-        });
+<footer>
+<div class="container">
+<p>&copy; 2026 УРФУ, проект Engolympia</p>
+</div>
+</footer>
 
-        function openPrivacyPolicy() {
-            alert('Политика обработки персональных данных:\n\n Форма заявки несет информационный характер, данные не поддаются сбору и обработке, не нарушая Федеральный закон №152-ФЗ.');
-            return false;
-        }
+<script>
+// Мобильное меню
+function toggleMobileMenu() {
+const menu = document.getElementById('nav-menu');
+menu.classList.toggle('active');
+}
 
-        // Плавный скролл
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+// Закрытие меню при клике на ссылку
+document.querySelectorAll('#nav-menu a').forEach(link => {
+link.addEventListener('click', () => {
+document.getElementById('nav-menu').classList.remove('active');
+});
+});
 
-        // ✅ ОБНОВЛЕННАЯ ФУНКЦИЯ ОТПРАВКИ
-        function handleSubmit(e) {
-            e.preventDefault();
-            
-            if (!privacyCheckbox.checked) {
-                alert('❌ Необходимо согласиться на обработку персональных данных!');
-                return;
-            }
-            
-            alert('✅ Заявка отправлена! Скоро с вами свяжутся.');
-            e.target.reset();
-            privacyCheckbox.checked = false;
-            submitBtn.disabled = true;
-        }
-    </script>
+// Закрытие меню при клике вне его
+document.addEventListener('click', (e) => {
+const menu = document.getElementById('nav-menu');
+const btn = document.querySelector('.mobile-menu-btn');
+if (!menu.contains(e.target) && !btn.contains(e.target)) {
+menu.classList.remove('active');
+}
+});
+
+// ✅ НОВАЯ ФУНКЦИЯ ДЛЯ АЛЕРТА
+function showPrivacyInfo() {
+alert('ℹ️ ВАЖНО: Данная форма заявки имеет демонстрационный характер.\n\n• Форма создана исключительно для демонстрации функционала сайта\n• Персональные данные НЕ собираются и НЕ хранятся\n• Отправка данных не происходит\n• Использование формы не нарушает Федеральный закон №152-ФЗ "О персональных данных"\n\n.');
+}
+
+// Плавный скролл
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+document.querySelector(this.getAttribute('href')).scrollIntoView({
+behavior: 'smooth'
+});
+});
+});
+
+function handleSubmit(e) {
+e.preventDefault();
+const privacyCheckbox = document.getElementById('privacy');
+if (!privacyCheckbox.checked) {
+alert('❌ Требуется согласие на обработку персональных данных!');
+return;
+}
+alert('✅ Заявка отправлена! Скоро с вами свяжутся.');
+e.target.reset();
+}
+</script>
 </body>
 </html>
